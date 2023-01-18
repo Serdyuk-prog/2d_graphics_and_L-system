@@ -35,8 +35,7 @@ let curr_angle = 0;
 let curr_buffer = [];
 let gen_num = 0;
 
-// let new_r = new Rules(S, F, null, null, 20);
-
+// функция генерации нового поколения 
 function new_gen(data, rules) {
     let result = "";
     for (let char of data) {
@@ -49,10 +48,12 @@ function new_gen(data, rules) {
     return result;
 }
 
+// перевод в радианы для вычислений
 function toRadian(degree) {
     return (degree * Math.PI) / 180;
 }
 
+// отрисовка линии с заданным углом поворота 
 function drawLine() {
     const x1 = curr_point.x;
     const y1 = curr_point.y;
@@ -91,6 +92,7 @@ function clearCanvas() {
     clearBuffer();
 }
 
+// читаем строку команд и вызываем функции действий 
 function draw_main(commands) {
     clearCanvas();
     console.log(commands);
@@ -118,6 +120,7 @@ function draw_main(commands) {
     }
 }
 
+// вызов функции отрисовки и функции генерации нового поколения 
 function draw_gen() {
     draw_main(cur_gen);
     cur_gen = new_gen(cur_gen, new_r);
@@ -189,6 +192,7 @@ inputs.forEach((el) => {
     });
 });
 
+// пресеты
 function preset2() {
     s_input.value = "F++F++F";
     f_input.value = "F-F++F-F";

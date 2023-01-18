@@ -49,6 +49,7 @@ function mountImage(image, context, canvas) {
     context.drawImage(image, 0, 0, width, height);
 }
 
+// Вычисление матрицы преобразования
 function getTransformMatrix(base_points, res_points) {
     const base = [
         [base_points[0].x, base_points[1].x, base_points[2].x],
@@ -73,11 +74,14 @@ function getStyle(p) {
     return "rgba(" + p[0] + "," + p[1] + "," + p[2] + "," + p[3] / 255 + ")";
 }
 
+// Простой
 function drawResultSimpl(transformMatrix, canvas, base_ctx, res_ctx) {
+    // обратная матрица
     let newMatrix = math.inv(transformMatrix);
     const width = canvas.width;
     const height = canvas.height;
 
+    // для каждого пикселя нового изображения находим соответствующий старого
     for (let x = 0; x < width; x++) {
         for (let y = 0; y < width; y++) {
             let coord = math.multiply(newMatrix, [[x], [y], [1]]);
@@ -92,11 +96,15 @@ function drawResultSimpl(transformMatrix, canvas, base_ctx, res_ctx) {
     }
 }
 
+// Билинейная
 function drawResultBilinear(transformMatrix, canvas, base_ctx, res_ctx) {
+    // обратная матрица
     let newMatrix = math.inv(transformMatrix);
     const width = canvas.width;
     const height = canvas.height;
 
+    // для каждого пикселя нового изображения находим соответствующий старого
+    // и получаем цвет усредненный с соседними пикселями
     for (let x = 0; x < width; x++) {
         for (let y = 0; y < width; y++) {
             let coord = math.multiply(newMatrix, [[x], [y], [1]]);
@@ -107,9 +115,6 @@ function drawResultBilinear(transformMatrix, canvas, base_ctx, res_ctx) {
                 y_f = Math.floor(new_y),
                 y_c = Math.ceil(new_y);
             if (x_f > 0 && y_f > 0 && x_c < width && y_c < height) {
-                // let p = base_ctx.getImageData(new_x, new_y, 1, 1).data;
-                // res_ctx.fillStyle = getStyle(p);
-                // res_ctx.fillRect(x, y, 1, 1);
                 let color1 = base_ctx.getImageData(x_f, y_f, 1, 1).data,
                     color2 = base_ctx.getImageData(x_c, y_f, 1, 1).data,
                     color3 = base_ctx.getImageData(x_f, y_c, 1, 1).data,
@@ -131,6 +136,7 @@ function drawResultBilinear(transformMatrix, canvas, base_ctx, res_ctx) {
     }
 }
 
+// Проверка на приближение
 function isZoom(transformMatrix) {
     return (
         (Math.abs(transformMatrix[0][0]) > 1 &&
@@ -181,6 +187,7 @@ window.onload = function () {
         drawPoint(curPoint, res_temp_ctx, mpColor);
         points_res.push(curPoint);
 
+        // Если есть все 6 точек вычисляем матрице преобразования и рисуем результат
         if (points_res.length == 3) {
             console.log("Yep 2!");
             if (points_base.length == 3) {
@@ -190,6 +197,7 @@ window.onload = function () {
                 );
                 clearCanvas(base_ctx, base_canvas, image);
                 clearCanvas(res_ctx, res_canvas, null);
+                // Если приближение то билинейная если нет, то простой алгоритм
                 if (isZoom(transformMatrix)) {
                     console.log("zoom");
                     drawResultBilinear(

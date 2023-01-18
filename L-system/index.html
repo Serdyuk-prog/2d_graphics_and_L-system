@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="#" />
+        <link rel="stylesheet" href="style.css" />
+        <title>L-system</title>
+    </head>
+    <body>
+        <div id="main">
+            <div id="operation_area">
+                <div id="drawing">
+                    <canvas id="canvas" width="500" height="500"></canvas>
+                    <button id="draw-button">Draw</button>
+                </div>
+                <div id="data">
+                   
+                        <div class="input_group">
+                            <label for="data-s">S:</label>
+                            <input type="text" name="s" id="data-s" />
+                        </div>
+                        <div class="input_group">
+                            <label for="data-f">F:</label>
+                            <input type="text" name="f" id="data-f" />
+                        </div>
+                        <div class="input_group">
+                            <label for="data-x">X:</label>
+                            <input type="text" name="x" id="data-x" />
+                        </div>
+                        <div class="input_group">
+                            <label for="data-y">Y:</label>
+                            <input type="text" name="y" id="data-y" />
+                        </div>
+                        <div class="input_group">
+                            <label for="data-a">a:</label>
+                            <input type="text" name="a" id="data-a" />
+                        </div>
+                        <div id="coordinates" class="input_group">
+                            <label for="data-x0">x0:</label>
+                            <input type="text" name="x0" id="data-x0" />
+                            <label for="data-y0">y0:</label>
+                            <input type="text" name="y0" id="data-y0" />
+                        </div>
+                  
+                </div>
+            </div>
+            <div id="presets-area">
+                <h3>Presets:</h3>
+                <div id="button-group">
+                    <button id="preset-1" class="presetButton">Preset-1</button>
+                    <button id="preset-2" class="presetButton">Preset-2</button>
+                    <button id="preset-3" class="presetButton">Preset-3</button>
+                    <button id="preset-4" class="presetButton">Preset-4</button>
+                </div>
+            </div>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>

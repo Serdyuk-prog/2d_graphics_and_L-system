@@ -1,0 +1,92 @@
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 25px;
+    font-family: sans-serif;
+    height: 100%;
+}
+#operation_area {
+    /* border: 1px solid red; */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    margin-top: 7px;
+}
+
+#drawing {
+    /* border: 1px solid green; */
+    margin: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#data {
+    display: flex;
+    margin-right: 3vh;
+    margin-left: 3vh;
+    flex-direction: column;
+}
+
+#presets-area {
+    margin-top: 10px;
+    /* border: 1px solid hotpink; */
+    
+    width: 100vh;
+}
+
+#canvas {
+    /* border: 2px solid black;
+    border-radius: ; */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 3px;
+    margin: 2vh;
+}
+
+#draw-button {
+    width: 150px;
+    font-size: 25px;
+    margin-bottom: 3vh;
+}
+
+.input_group {
+    margin: 6px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#coordinates > input {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+input {
+    width: 170px;
+    height: 25px;
+    font-size: 24px;
+}
+
+#button-group {
+    display: flex;
+    margin: 2vh;
+    justify-content: space-around;
+}
+
+#presets-area > h3 {
+    margin: 2vh;
+}
+
+.presetButton{
+    width: 150px;
+    font-size: 25px;
+}
+
+button{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+button:active{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
